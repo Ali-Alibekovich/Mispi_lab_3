@@ -10,13 +10,13 @@
         <javac srcdir="src" destdir="build/classes">
             <classpath>
                 <fileset dir="lib">
-                    <include name="**/*.jar" />
+                    <include name="**/*.jar"/>
                 </fileset>
             </classpath>
         </javac>
     </target>
 
-    <!-- buiild target -->
+    <!-- build target -->
     <target name="build" depends="compile">
         <mkdir dir="build"/>
         <jar destfile="build/${ant.project.name}.jar" basedir="build/classes">
@@ -32,12 +32,12 @@
 
     </target>
 
-    <!-- validate target -->
-    <target name="validate">
+    <!-- validate xml target -->
+    <target name="xml">
         <xmlvalidate failonerror="yes" lenient="no" warn="yes">
-            <fileset dir="src" includes="**/*.xml"/>
+            <fileset dir="." includes="*/*.xml"/>
             <attribute name="http://xml.org/sax/features/validation" value="true"/>
-            <attribute name="http://apache.org/xml/features/validation/schema"  value="true"/>
+            <attribute name="http://apache.org/xml/features/validation/schema" value="true"/>
             <attribute name="http://xml.org/sax/features/namespaces" value="true"/>
         </xmlvalidate>
     </target>
