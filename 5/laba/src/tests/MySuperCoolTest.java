@@ -1,5 +1,6 @@
 package tests;
 
+import Collection.CollectionManager;
 import Commands.Invoker;
 import Commands.Receiver;
 import Commands.SpecificCommands.Clear;
@@ -18,6 +19,7 @@ public class MySuperCoolTest {
     public void init() {
         invoker = new Invoker();
         receiver = new Receiver(invoker);
+        CollectionManager.initializeCollection();
     }
 
     @Test
@@ -29,6 +31,10 @@ public class MySuperCoolTest {
         invoker.executeCommand(new String[]{"info"});
         invoker.executeCommand(new String[]{"info"});
         invoker.executeCommand(new String[]{"help"});
-        assertArrayEquals(new String[]{"help", "clear", "info", "info",  null, null, null}, invoker.getCommandHistory());
+        invoker.executeCommand(new String[]{"help"});
+        invoker.executeCommand(new String[]{"help"});
+        invoker.executeCommand(new String[]{"help"});
+        String[] commands = {"clear", "info", "info", "help", "help", "help", "help"};
+        assertArrayEquals(commands, invoker.getCommandHistory());
     }
 }
