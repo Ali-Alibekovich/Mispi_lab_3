@@ -2,7 +2,7 @@
 <project name="Main" default="compile">
     <property name="lib.dir" value="lib"/>
     <path id="library">
-        <fileset dir="${lib.dir}" includes="gson-2.8.5.jar"/>
+        <fileset dir="${lib.dir}" includes="*.jar"/>
     </path>
     <!-- compile target -->
     <target name="compile">
