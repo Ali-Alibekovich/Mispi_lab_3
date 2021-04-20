@@ -4,6 +4,7 @@
     <path id="library">
         <fileset dir="${lib.dir}" includes="*.jar"/>
     </path>
+
     <!-- compile target -->
     <target name="compile">
         <mkdir dir="build/classes"/>
@@ -31,10 +32,12 @@
     <target name="test" depends="build">
         <junit printsummary="on">
             <classpath>
+                <path refid="library"/>
                 <pathelement location="build/classes"/>
+                <pathelement location="build/classes/tests"/>
             </classpath>
             <batchtest todir="reports">
-                <fileset dir="test" includes="MySuperCoolTest.java"/>
+                <fileset dir="src/tests" includes="MySuperCoolTest.java"/>
             </batchtest>
         </junit>
     </target>
