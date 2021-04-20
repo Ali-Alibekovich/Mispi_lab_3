@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project name="Main" default="compile">
+    <property name="lib.dir" value="lib"/>
+    <path id="library">
+        <fileset dir="${lib.dir}" includes="gson-2.8.5.jar"/>
+    </path>
+    <!-- compile target -->
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- buiild target -->
+    <target name="build" depends="compile">
+        <mkdir dir="build"/>
+        <jar destfile="build/${ant.project.name}.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+            <zipgroupfileset dir="lib" includes="**/*.jar"/>
+        </jar>
+    </target>
+
+    <!-- test target -->
+    <target name="test" depends="build">
+
+    </target>
+
+    <!-- validate target -->
+    <target name="validate">
+        <xmlvalidate failonerror="yes" lenient="no" warn="yes">
+            <fileset dir="src" includes="**/*.xml"/>
+            <attribute name="http://xml.org/sax/features/validation" value="true"/>
+            <attribute name="http://apache.org/xml/features/validation/schema"  value="true"/>
+            <attribute name="http://xml.org/sax/features/namespaces" value="true"/>
+        </xmlvalidate>
+    </target>
+
+    <!-- clean target -->
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+</project>
