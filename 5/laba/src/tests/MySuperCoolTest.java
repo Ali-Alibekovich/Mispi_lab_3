@@ -6,11 +6,13 @@ import Commands.Receiver;
 import Commands.SpecificCommands.Clear;
 import Commands.SpecificCommands.Help;
 import Commands.SpecificCommands.Info;
+import jdk.jfr.Name;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+@Name("Test1")
 public class MySuperCoolTest {
     static Invoker invoker;
     static Receiver receiver;

@@ -30,21 +30,17 @@
 
     <!-- test target -->
     <target name="test" depends="build">
-        <javac srcdir="src/tests" destdir="build/classes">
-            <classpath>
-                <fileset dir="lib">
-                    <include name="**/*.jar"/>
-                </fileset>
-            </classpath>
-        </javac>
-        <junit printsummary="on">
+        <junit>
+            <formatter type="plain" usefile="false" />
             <classpath>
                 <path refid="library"/>
-                <pathelement location="build/classes"/>
                 <pathelement location="build/classes/tests"/>
+                <pathelement location="build/classes"/>
             </classpath>
-            <batchtest todir="reports">
-                <fileset dir="src/tests" includes="MySuperCoolTest.java"/>
+            <batchtest>
+                <fileset dir="src/tests">
+                    <include name="Test1" />
+                </fileset>
             </batchtest>
         </junit>
     </target>
