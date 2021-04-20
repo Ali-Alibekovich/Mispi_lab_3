@@ -29,7 +29,14 @@
 
     <!-- test target -->
     <target name="test" depends="build">
-
+        <junit printsummary="on">
+            <classpath>
+                <pathelement location="build/classes"/>
+            </classpath>
+            <batchtest todir="reports">
+                <fileset dir="test" includes="MySuperCoolTest.java"/>
+            </batchtest>
+        </junit>
     </target>
 
     <!-- validate xml target -->
