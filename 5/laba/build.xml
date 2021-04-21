@@ -11,7 +11,7 @@
         <javac srcdir="src" destdir="build/classes">
             <classpath>
                 <fileset dir="lib">
-                    <include name="**/*.jar"/>
+                    <include name="*/*.jar"/>
                 </fileset>
             </classpath>
         </javac>
@@ -39,7 +39,7 @@
             </classpath>
             <batchtest>
                 <fileset dir="src/tests">
-                    <include name="Test1" />
+                    <include name="MySuperCoolTest"/>
                 </fileset>
             </batchtest>
         </junit>
@@ -58,5 +58,35 @@
     <!-- clean target -->
     <target name="clean">
         <delete dir="build"/>
+    </target>
+
+    <!-- team target -->
+    <target name="team">
+        <exec executable="bash">
+            <arg line="script.sh"/>
+        </exec>
+        <move todir="/home/s285317/svntest/working_copy0/laba/build/" includeemptydirs="false">
+            <fileset dir="/home/s285317/svntest/working_copy0/laba/build/"/>
+            <mapper type="glob" from="Main.jar" to="Main0.jar"/>
+        </move>
+        <move todir="/home/s285317/svntest/working_copy1/laba/build/" includeemptydirs="false">
+            <fileset dir="/home/s285317/svntest/working_copy1/laba/build/"/>
+            <mapper type="glob" from="Main.jar" to="Main1.jar"/>
+        </move>
+        <move todir="/home/s285317/svntest/working_copy2/laba/build/" includeemptydirs="false">
+            <fileset dir="/home/s285317/svntest/working_copy2/laba/build/"/>
+            <mapper type="glob" from="Main.jar" to="Main2.jar"/>
+        </move>
+        <move todir="/home/s285317/svntest/working_copy3/laba/build/" includeemptydirs="false">
+            <fileset dir="/home/s285317/svntest/working_copy3/laba/build/"/>
+            <mapper type="glob" from="Main.jar" to="Main3.jar"/>
+        </move>
+        <zip destfile="build/jars/jars.zip">
+            <fileset file="/home/s285317/svntest/working_copy0/laba/build/Main0.jar"/>
+            <fileset file="/home/s285317/svntest/working_copy1/laba/build/Main1.jar"/>
+            <fileset file="/home/s285317/svntest/working_copy2/laba/build/Main2.jar"/>
+            <fileset file="/home/s285317/svntest/working_copy3/laba/build/Main3.jar"/>
+        </zip>
+
     </target>
 </project>
